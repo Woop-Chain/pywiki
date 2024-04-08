@@ -1,6 +1,6 @@
 from pywiki import staking_signing, staking_structures
 
-from pywiki.numbers import convert_woo_to_atto
+from pywiki.numbers import convert_woc_to_atto
 
 # other transactions (create/edit validator) are in test_validator.py
 # test_delegate is the same as test_undelegate (except the directive) so it has been omitted
@@ -8,13 +8,13 @@ from pywiki.numbers import convert_woo_to_atto
 """
 let stakingTx
 let stakeMsg3: CollectRewards = new CollectRewards(
-  'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9'
+  'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9'
 )
 stakingTx = new StakingTransaction(
   Directive.DirectiveCollectRewards,
   stakeMsg3,
   2,    // nonce
-  numberToHex(new Unit('1').asWoo().toWei()),    // gasPrice
+  numberToHex(new Unit('1').asWoc().toWei()),    // gasPrice
   100,  // gasLimit
   null,    // chainId
 );
@@ -25,9 +25,9 @@ console.log(signed)
 # def test_collect_rewards_no_chain_id():
 #     transaction_dict = {
 #         'directive': staking_structures.Directive.CollectRewards,
-#         'delegatorAddress': 'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+#         'delegatorAddress': 'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
 #         'nonce': 2,
-#         'gasPrice': int(convert_woo_to_atto(1)),
+#         'gasPrice': int(convert_woc_to_atto(1)),
 #         'gasLimit': 100,
 #     }
 #     signed_tx = staking_signing.sign_staking_transaction(transaction_dict, '4edef2c24995d15b0e25cbd152fb0e2c05d3b79b9c2afd134e6f59f91bf99e48')
@@ -35,13 +35,13 @@ console.log(signed)
 """
 let stakingTx
 let stakeMsg3: CollectRewards = new CollectRewards(
-  'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9'
+  'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9'
 )
 stakingTx = new StakingTransaction(
   Directive.DirectiveCollectRewards,
   stakeMsg3,
   2,    // nonce
-  numberToHex(new Unit('1').asWoo().toWei()),    // gasPrice
+  numberToHex(new Unit('1').asWoc().toWei()),    // gasPrice
   100,  // gasLimit
   1,    // chainId
 );
@@ -54,9 +54,9 @@ console.log(signed)
 def test_collect_rewards_chain_id():
     transaction_dict = {
         "directive": staking_structures.Directive.CollectRewards,
-        "delegatorAddress": "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
+        "delegatorAddress": "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
         "nonce": 2,
-        "gasPrice": int(convert_woo_to_atto(1)),
+        "gasPrice": int(convert_woc_to_atto(1)),
         "gasLimit": 100,
         "chainId": 1,  # with chainId for coverage
     }
@@ -73,15 +73,15 @@ def test_collect_rewards_chain_id():
 """
 let stakingTx
 let stakeMsg4: Delegate = new Delegate(
-  'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
-  'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+  'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+  'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
   5
 )
 stakingTx = new StakingTransaction(
   Directive.DirectiveDelegate,
   stakeMsg4,
   2,    // nonce
-  numberToHex(new Unit('1').asWoo().toWei()),    // gasPrice
+  numberToHex(new Unit('1').asWoc().toWei()),    // gasPrice
   100,  // gasLimit
   2,    // chainId
 );
@@ -94,11 +94,11 @@ console.log(signed)
 def test_delegate():
     transaction_dict = {
         "directive": staking_structures.Directive.Delegate,
-        "delegatorAddress": "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
-        "validatorAddress": "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
+        "delegatorAddress": "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
+        "validatorAddress": "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
         "amount": 5,
         "nonce": 2,
-        "gasPrice": int( convert_woo_to_atto( 1 ) ),
+        "gasPrice": int( convert_woc_to_atto( 1 ) ),
         "gasLimit": 100,
         "chainId": 2,
     }

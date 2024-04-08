@@ -13,7 +13,7 @@ let transaction: Transaction = new Transaction(
         {
           gasLimit: 100,
           gasPrice: 1,
-          to: "woo1z3u3d9expexf5u03sjzvn7vhkvywtye9nqmmlu",
+          to: "woc1z3u3d9expexf5u03sjzvn7vhkvywtye9nqmmlu",
           value: 5,
           nonce: 2,
         },
@@ -61,7 +61,7 @@ let transaction: Transaction = new Transaction(
         {
           gasLimit: 100,
           gasPrice: 1,
-          to: "woo1z3u3d9expexf5u03sjzvn7vhkvywtye9nqmmlu",
+          to: "woc1z3u3d9expexf5u03sjzvn7vhkvywtye9nqmmlu",
           value: 5,
           nonce: 2,
           shardID: 0,

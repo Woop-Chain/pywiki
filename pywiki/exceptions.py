@@ -15,7 +15,7 @@ class InvalidValidatorError( ValueError ):
     """Exception raised Validator does not pass sanity checks."""
 
     errors = {
-        1: "Invalid WOO address",
+        1: "Invalid WOC address",
         2: "Field not initialized",
         3: "Invalid field input",
         4: "Error checking blockchain",

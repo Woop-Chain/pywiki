@@ -533,7 +533,7 @@ def get_leader_address(
     endpoint = DEFAULT_ENDPOINT,
     timeout = DEFAULT_TIMEOUT
 ) -> str:
-    """Get current leader woo address.
+    """Get current leader woc address.
 
     Parameters
     ----------
@@ -545,7 +545,7 @@ def get_leader_address(
     Returns
     -------
     str
-        Woo address of current leader
+        Woc address of current leader
 
     Raises
     ------
@@ -657,7 +657,7 @@ def get_circulating_supply(
     endpoint = DEFAULT_ENDPOINT,
     timeout = DEFAULT_TIMEOUT
 ) -> int:
-    """Get current circulation supply of tokens in WOO.
+    """Get current circulation supply of tokens in WOC.
 
     Parameters
     ----------
@@ -816,7 +816,7 @@ def get_last_cross_links(
 
     Returns
     -------
-    list of dictionaries, woo for each shard except the woo at the endpoint; each representing
+    list of dictionaries, woc for each shard except the woc at the endpoint; each representing
     the last block on the beacon-chain
         hash: :obj:`str` Parent block hash
         block-number: :obj:`int` Block number
@@ -1461,7 +1461,7 @@ def get_block_signers(
     Returns
     -------
     list
-        List of woo addresses that signed the block
+        List of woc addresses that signed the block
 
     Raises
     ------

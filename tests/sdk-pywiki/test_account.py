@@ -6,8 +6,8 @@ from pywiki import account
 from pywiki.rpc import exceptions
 
 explorer_endpoint = "http://localhost:9700"
-endpoint_shard_woo = "http://localhost:9502"
-local_test_address = "woo155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
+endpoint_shard_woc = "http://localhost:9502"
+local_test_address = "woc155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
 test_validator_address = local_test_address
 genesis_block_number = 0
 test_block_number = 1
@@ -50,7 +50,7 @@ def test_get_account_nonce( setup_blockchain ):
         account.get_account_nonce,
         local_test_address,
         test_block_number,
-        endpoint = endpoint_shard_woo,
+        endpoint = endpoint_shard_woc,
     )
     assert isinstance( true_nonce, int )
 
@@ -95,10 +95,10 @@ def test_get_total_balance( setup_blockchain ):
 
 def test_is_valid_address():
     assert account.is_valid_address(
-        "woo1zksj3evekayy90xt4psrz8h6j2v3hla4qwz4ur"
+        "woc1zksj3evekayy90xt4psrz8h6j2v3hla4qwz4ur"
     )
     assert not account.is_valid_address(
-        "woo1wje75aedczmj4dwjs0812xcg7vx0dy231cajk0"
+        "woc1wje75aedczmj4dwjs0812xcg7vx0dy231cajk0"
     )
 
 

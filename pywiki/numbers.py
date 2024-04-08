@@ -1,5 +1,5 @@
 """
-Handles conversion of WOO to ATTO and vice versa
+Handles conversion of WOC to ATTO and vice versa
 For more granular conversions, see Web3.toWei
 """
 
@@ -8,38 +8,38 @@ from decimal import Decimal
 _conversion_unit = Decimal( 1e18 )
 
 
-def convert_atto_to_woo( atto ) -> Decimal:
-    """Convert ATTO to WOO.
+def convert_atto_to_woc( atto ) -> Decimal:
+    """Convert ATTO to WOC.
 
     Parameters
     ----------
     atto: str, int, float, decimal
-        Value in ATTO to convert to WOO
-        Float input will be truncated, since ATTO is the lowest possible denomination of WOO
+        Value in ATTO to convert to WOC
+        Float input will be truncated, since ATTO is the lowest possible denomination of WOC
 
     Returns
     -------
     decimal
-        Converted value in WOO
+        Converted value in WOC
     """
     if isinstance( atto, float ):
         atto = int( atto )
     return Decimal( atto ) / _conversion_unit
 
 
-def convert_woo_to_atto( woo ) -> Decimal:
-    """Convert WOO to ATTO.
+def convert_woc_to_atto( woc ) -> Decimal:
+    """Convert WOC to ATTO.
 
     Parameters
     ----------
-    woo: str, int, float, decimal
-        Value in WOO to convert to ATTO
+    woc: str, int, float, decimal
+        Value in WOC to convert to ATTO
 
     Returns
     -------
     decimal
         Converted value in ATTO
     """
-    if isinstance( woo, float ):
-        woo = str( woo )
-    return Decimal( woo ) * _conversion_unit
+    if isinstance( woc, float ):
+        woc = str( woc )
+    return Decimal( woc ) * _conversion_unit

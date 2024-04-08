@@ -45,25 +45,25 @@ def test_get_goversion():
     assert isinstance( util.get_goversion(), str )
 
 
-def test_convert_woo_to_hex():
+def test_convert_woc_to_hex():
     assert (
-        util.convert_woo_to_hex( "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" )
+        util.convert_woc_to_hex( "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" )
         == "0xeBCD16e8c1D8f493bA04E99a56474122D81A9c58"
     )
     assert (
-        util.convert_woo_to_hex( "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" )
+        util.convert_woc_to_hex( "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" )
         == "0xeBCD16e8c1D8f493bA04E99a56474122D81A9c58"
     )
 
 
-def test_convert_hex_to_woo():
+def test_convert_hex_to_woc():
     assert (
-        util.convert_hex_to_woo( "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" )
-        == "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
+        util.convert_hex_to_woc( "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" )
+        == "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
     )
     assert (
-        util.convert_hex_to_woo( "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" )
-        == "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
+        util.convert_hex_to_woc( "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" )
+        == "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
     )
 
 

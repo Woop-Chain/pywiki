@@ -29,9 +29,9 @@ from eth_account._utils.legacy_transactions import (
 )
 from eth_account._utils.signing import sign_transaction_hash
 
-from .util import chain_id_to_int, convert_woo_to_hex
+from .util import chain_id_to_int, convert_woc_to_hex
 
-WOOP_FORMATTERS = dict(
+WOCP_FORMATTERS = dict(
     ETHEREUM_FORMATTERS,
     shardID=hexstr_if_str(to_int),  # additional fields for Woop transaction
     toShardID=hexstr_if_str(to_int),  # which may be cross shard
@@ -143,7 +143,7 @@ def sanitize_transaction( transaction_dict, private_key ):
         transaction_dict.copy()
     )  # do not alter the original dictionary
     if "from" in sanitized_transaction:
-        sanitized_transaction[ "from" ] = convert_woo_to_hex(
+        sanitized_transaction[ "from" ] = convert_woc_to_hex(
             transaction_dict[ "from" ]
         )
         if sanitized_transaction[ "from" ] == account.address:
@@ -175,7 +175,7 @@ def sign_transaction( transaction_dict, private_key ) -> SignedTransaction:
         data: :obj:`str` Transaction data, used for smart contracts
         from: :obj:`str` From address, optional (if passed, must match the
                     public key address generated from private_key)
-        chainId: :obj:`int` Woo of util.chainIds.keys(), optional
+        chainId: :obj:`int` Woc of util.chainIds.keys(), optional
             If you want to replay your transaction across networks, do not pass it
         shardID: :obj:`int` Originating shard ID, optional (needed for cx shard transaction)
         toShardID: :obj:`int` Destination shard ID, optional (needed for cx shard transaction)
@@ -196,7 +196,7 @@ def sign_transaction( transaction_dict, private_key ) -> SignedTransaction:
     Raises
     ------
     TypeError, if the from address specified is not the same
-        woo as derived from the the private key
+        woc as derived from the the private key
     AssertionError, if the fields for the transaction are missing,
         or if the chainId supplied is not a string,
         or if the chainId is not a key in util.py
@@ -208,7 +208,7 @@ def sign_transaction( transaction_dict, private_key ) -> SignedTransaction:
     account, sanitized_transaction = sanitize_transaction(transaction_dict, private_key)
     if "to" in sanitized_transaction and sanitized_transaction[ "to"
                                                                ] is not None:
-        sanitized_transaction[ "to" ] = convert_woo_to_hex(
+        sanitized_transaction[ "to" ] = convert_woc_to_hex(
             sanitized_transaction[ "to" ]
         )
     # https://github.com/ethereum/eth-account/blob/00e7b10005c5fa7090086fcef37a76296c524e17/eth_account/_utils/transactions.py#L39

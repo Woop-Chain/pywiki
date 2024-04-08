@@ -28,7 +28,7 @@ def get_all_validator_addresses(
     Returns
     -------
     list
-        List of :obj:`str`, woo addresses for all validators on chain
+        List of :obj:`str`, woc addresses for all validators on chain
 
     Raises
     ------
@@ -58,7 +58,7 @@ def get_validator_information(
     Parameters
     ----------
     validator_addr: str
-        Woo address of the validator to get information for
+        Woc address of the validator to get information for
     endpoint: :obj:`str`, optional
         Endpoint to send request to
     timeout: :obj:`int`, optional
@@ -145,7 +145,7 @@ def get_elected_validator_addresses(
     Parameters
     ----------
     validator_addr: str
-        Woo address of the validator to get information for
+        Woc address of the validator to get information for
     endpoint: :obj:`str`, optional
         Endpoint to send request to
     timeout: :obj:`int`, optional
@@ -194,7 +194,7 @@ def get_validators(
     :obj:`dict` Dictionary with the following keys:
         shardID: :obj:`int` Shard ID of the endpoint
         validators: obj:`list` List of dictionaries
-            address: obj:`str` Woo address of validator
+            address: obj:`str` Woc address of validator
             balance: :obj:`int` Balance of validator
 
     Raises
@@ -272,7 +272,7 @@ def get_validator_information_by_block_number(
     Parameters
     ----------
     validator_addr: str
-        Woo address of the validator to get information for
+        Woc address of the validator to get information for
     block_num: int
         Block number to query validator information at
     endpoint: :obj:`str`, optional
@@ -358,7 +358,7 @@ def get_validator_self_delegation(
     Parameters
     ----------
     address: :obj:`str`
-        woo address of the validator
+        woc address of the validator
     endpoint: :obj:`str`, optional
         Endpoint to send request to
     timeout: :obj:`int`, optional
@@ -402,7 +402,7 @@ def get_validator_total_delegation(
     Parameters
     ----------
     address: :obj:`str`
-        woo address of the validator
+        woc address of the validator
     endpoint: :obj:`str`, optional
         Endpoint to send request to
     timeout: :obj:`int`, optional
@@ -644,7 +644,7 @@ def get_delegation_by_delegator_and_validator(
 
     Returns
     -------
-    woo delegation (or None if such delegation doesn't exist)
+    woc delegation (or None if such delegation doesn't exist)
     see get_delegations_by_delegator for fields
 
     Raises

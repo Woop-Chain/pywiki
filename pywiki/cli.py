@@ -1,6 +1,6 @@
 """Wrapper for Woop's CLI.
 
-This module makes it easy for woo to interact with the Woop CLI.
+This module makes it easy to interact with the Woop CLI.
 It also natively manages all of the keystore related features to help with scripting.
 
 Example:
@@ -11,7 +11,7 @@ Example:
             it is the only way to recover your account if you ever forget your password
         craft ... tobacco'
         >>> cli.get_accounts_keystore()
-        {'test1': 'woo1aqfeed538xf7n0cfh60tjaeat7yw333pmj6sfu'}
+        {'test1': 'woc1aqfeed538xf7n0cfh60tjaeat7yw333pmj6sfu'}
         >>> check_addr = cli.get_accounts_keystore()["test1"]
         >>> cli.get_accounts(check_addr)
         ['test1']
@@ -128,7 +128,7 @@ def _get_current_accounts_keystore():
     """Internal function that gets the current keystore from the CLI.
 
     :returns A dictionary where the keys are the account names/aliases and the
-             values are their 'woo1...' addresses.
+             values are their 'woc1...' addresses.
     """
     curr_addresses = {}
     response = single_call( "wiki keys list" )
@@ -208,7 +208,7 @@ def _make_call_command( command ):
 def get_accounts_keystore():
     """
     :returns A dictionary where the keys are the account names/aliases and the
-             values are their 'woo1...' addresses. The returned dictionary
+             values are their 'woc1...' addresses. The returned dictionary
              will be maintained as keys gets added and removed.
     """
     _sync_accounts()
@@ -296,7 +296,7 @@ def get_account_keystore_path():
 
 def check_address( address ):
     """
-    :param address: A 'woo1...' address.
+    :param address: A 'woc1...' address.
     :return: Boolean of if the address is in the CLI's keystore.
     """
     return address in get_accounts_keystore().values()
@@ -305,14 +305,14 @@ def check_address( address ):
 def get_address( name ):
     """
     :param name: The alias of a key used in the CLI's keystore.
-    :return: The associated 'woo1...' address.
+    :return: The associated 'woc1...' address.
     """
     return get_accounts_keystore().get( name, None )
 
 
 def get_accounts( address ):
     """
-    :param address: The 'woo1...' address
+    :param address: The 'woc1...' address
     :return: A list of account names associated with the param
 
     Note that a list of account names is needed because 1 address can
@@ -346,7 +346,7 @@ def remove_account( name ):
 
 def remove_address( address ):
     """
-    :param address: The 'woo1...' address to be removed.
+    :param address: The 'woc1...' address to be removed.
     """
     for name in get_accounts( address ):
         remove_account( name )

@@ -6,7 +6,7 @@ from pywiki import staking
 from pywiki.rpc import exceptions
 
 explorer_endpoint = "http://localhost:9700"
-test_validator_address = "woo155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
+test_validator_address = "woc155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
 fake_shard = "http://example.com"
 
 

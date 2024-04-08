@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from pywiki import validator
 
-from pywiki.numbers import convert_woo_to_atto
+from pywiki.numbers import convert_woc_to_atto
 
 from pywiki.exceptions import InvalidValidatorError
 
@@ -17,7 +17,7 @@ test_validator_loaded = False
 def test_instantiate_validator( setup_blockchain ):
     global test_validator_object
     test_validator_object = validator.Validator(
-        "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
+        "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
     )
     assert isinstance( test_validator_object, validator.Validator )
 
@@ -31,8 +31,8 @@ def test_load_validator( setup_blockchain ):
         "website": "alice.wikiwoop.com",
         "details": "Don't mess with me!!!",
         "security-contact": "Bob",
-        "min-self-delegation": convert_woo_to_atto( 10000 ),
-        "amount": convert_woo_to_atto( 10001 ),
+        "min-self-delegation": convert_woc_to_atto( 10000 ),
+        "amount": convert_woc_to_atto( 10001 ),
         "max-rate": "0.9",
         "max-change-rate": "0.05",
         "rate": "0.01",
@@ -42,7 +42,7 @@ def test_load_validator( setup_blockchain ):
         "bls-key-sigs": [
             "0x68f800b6adf657b674903e04708060912b893b7c7b500788808247550ab3e186e56a44ebf3ca488f8ed1a42f6cef3a04bd5d2b2b7eb5a767848d3135b362e668ce6bba42c7b9d5666d8e3a83be707b5708e722c58939fe9b07c170f3b7062414"
         ],
-        "max-total-delegation": convert_woo_to_atto( 40000 ),
+        "max-total-delegation": convert_woc_to_atto( 40000 ),
     }
     test_validator_object.load( info )
     global test_validator_loaded
@@ -56,19 +56,19 @@ For now I have checked that the below transaction to localnet works
 const description: Description = new Description('Alice', 'alice', 'alice.wikiwoop.com', 'Bob', "Don't mess with me!!!")
 const commissionRates: CommissionRate = new CommissionRate(new Decimal('0.01'), new Decimal('0.9'), new Decimal('0.05'))
 const stakeMsg: CreateValidator = new CreateValidator(
-        'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+        'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
         description,
         commissionRates,
-        numberToHex(new Unit('10000').asWoo().toWei()),    // minSelfDelegation
-        numberToHex(new Unit('40000').asWoo().toWei()),    // maxTotalDelegation
+        numberToHex(new Unit('10000').asWoc().toWei()),    // minSelfDelegation
+        numberToHex(new Unit('40000').asWoc().toWei()),    // maxTotalDelegation
         [ '0xb9486167ab9087ab818dc4ce026edb5bf216863364c32e42df2af03c5ced1ad181e7d12f0e6dd5307a73b62247608611' ],
-        numberToHex(new Unit('10001').asWoo().toWei())    // amount
+        numberToHex(new Unit('10001').asWoc().toWei())    // amount
   )
 const stakingTx: StakingTransaction = new StakingTransaction(
   Directive.DirectiveCreateValidator,
   stakeMsg,
   2,    // nonce
-  numberToHex(new Unit('1').asWoo().toWei()),    // gasPrice
+  numberToHex(new Unit('1').asWoc().toWei()),    // gasPrice
   100,      // gasLimit
   null,     // chainId
 );
@@ -83,7 +83,7 @@ def test_create_validator_sign( setup_blockchain ):
         pytest.skip( "Validator not instantiated yet" )
     signed_hash = test_validator_object.sign_create_validator_transaction(
         2,
-        int( convert_woo_to_atto( 1 ) ),
+        int( convert_woc_to_atto( 1 ) ),
         100,
         "4edef2c24995d15b0e25cbd152fb0e2c05d3b79b9c2afd134e6f59f91bf99e48",
         2,
@@ -115,11 +115,11 @@ const { numberToHex, Unit } = require('@woop-js/utils');
 const description: Description = new Description('Alice', 'alice', 'alice.wikiwoop.com', 'Bob', "Don't mess with me!!!")
 const commissionRates: CommissionRate = new CommissionRate(new Decimal('0.01'), new Decimal('0.9'), new Decimal('0.05'))
 const stakeMsg: EditValidator = new EditValidator(
-        'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+        'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
         description,
         new Decimal('0.06'),
-        numberToHex(new Unit('10000').asWoo().toWei()),    // minSelfDelegation
-        numberToHex(new Unit('40000').asWoo().toWei()),    // maxTotalDelegation
+        numberToHex(new Unit('10000').asWoc().toWei()),    // minSelfDelegation
+        numberToHex(new Unit('40000').asWoc().toWei()),    // maxTotalDelegation
         '0xb9486167ab9087ab818dc4ce026edb5bf216863364c32e42df2af03c5ced1ad181e7d12f0e6dd5307a73b62247608611', // remove key
         '0xb9486167ab9087ab818dc4ce026edb5bf216863364c32e42df2af03c5ced1ad181e7d12f0e6dd5307a73b62247608612'  // add key
   )
@@ -127,7 +127,7 @@ const stakingTx: StakingTransaction = new StakingTransaction(
   Directive.DirectiveEditValidator,
   stakeMsg,
   2,    // nonce
-  numberToHex(new Unit('1').asWoo().toWei()),    // gasPrice
+  numberToHex(new Unit('1').asWoc().toWei()),    // gasPrice
   100,  // gasLimit
   2,    // chainId
 );
@@ -142,7 +142,7 @@ def test_edit_validator_sign( setup_blockchain ):
         pytest.skip( "Validator not instantiated yet" )
     signed_hash = test_validator_object.sign_edit_validator_transaction(
         2,
-        int(convert_woo_to_atto(1)),
+        int(convert_woc_to_atto(1)),
         100,
         "0.06",
         "0xb9486167ab9087ab818dc4ce026edb5bf216863364c32e42df2af03c5ced1ad181e7d12f0e6dd5307a73b62247608612",  # remove key
@@ -194,13 +194,13 @@ def test_validator_getters( setup_blockchain ):
         pytest.skip( "Validator not instantiated yet" )
     assert (
         test_validator_object.get_address() ==
-        "woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
+        "woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9"
     )
     assert test_validator_object.add_bls_key( "5" )
     assert test_validator_object.remove_bls_key( "5" )
     assert test_validator_object.get_name() == "Alice"
     assert test_validator_object.get_identity() == "alice"
-    assert test_validator_object.get_website() == "alice.wikiwoop.com"
+    assert test_validator_object.get_website() == "alice.wikiwocp.com"
     assert test_validator_object.get_security_contact() == "Bob"
     assert test_validator_object.get_details() == "Don't mess with me!!!"
     assert isinstance(
@@ -220,6 +220,6 @@ def test_validator_getters( setup_blockchain ):
 
 def test_validator_load_from_blockchain( setup_blockchain ):
     test_validator_object2 = validator.Validator(
-        "woo155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
+        "woc155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
     )
     test_validator_object2.load_from_blockchain()

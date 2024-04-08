@@ -42,7 +42,7 @@ from .staking_structures import (
     CollectRewards,
 )
 
-from .util import convert_woo_to_hex
+from .util import convert_woc_to_hex
 
 
 # https://github.com/woop-chain/sdk/blob/99a827782fabcd5f91f025af0d8de228956d42b4/packages/woop-staking/src/stakingTransaction.ts#L335
@@ -255,10 +255,10 @@ def _sign_delegate_or_undelegate( transaction_dict, private_key ):
             hexstr_if_str( to_int )
         ],
         [
-            convert_woo_to_hex(
+            convert_woc_to_hex(
                 sanitized_transaction.pop( "delegatorAddress" )
             ),
-            convert_woo_to_hex(
+            convert_woc_to_hex(
                 sanitized_transaction.pop( "validatorAddress" )
             ),
             sanitized_transaction.pop( "amount" ),
@@ -286,7 +286,7 @@ def _sign_collect_rewards( transaction_dict, private_key ):
     # encode the stakeMsg
     sanitized_transaction[ "stakeMsg" ] = [
         hexstr_if_str( to_bytes )(
-            convert_woo_to_hex(
+            convert_woc_to_hex(
                 sanitized_transaction.pop( "delegatorAddress" )
             )
         )
@@ -346,10 +346,10 @@ def _sign_create_validator( transaction_dict, private_key ):
             identity,  # commission rates
             hexstr_if_str(
                 to_int
-            ),  # min self delegation ( in WOO ), decimals are silently dropped
+            ),  # min self delegation ( in WOC ), decimals are silently dropped
             hexstr_if_str(
                 to_int
-            ),  # max total delegation ( in WOO ), decimals are silently dropped
+            ),  # max total delegation ( in WOC ), decimals are silently dropped
             identity,  # bls public keys
             identity,  # bls key sigs
             hexstr_if_str(
@@ -357,7 +357,7 @@ def _sign_create_validator( transaction_dict, private_key ):
             ),  # amount ( the Hexlify in the SDK drops the decimals, which is what we will do too )
         ],
         [
-            convert_woo_to_hex( sanitized_transaction.pop( "validatorAddress" ) ),
+            convert_woc_to_hex( sanitized_transaction.pop( "validatorAddress" ) ),
             description,
             commission,
             math.floor(
@@ -403,16 +403,16 @@ def _sign_edit_validator( transaction_dict, private_key ):
             identity,  # new rate ( it's in a list so can't do hexstr_if_str )
             hexstr_if_str(
                 to_int
-            ),  # min self delegation ( in WOO ), decimals are silently dropped
+            ),  # min self delegation ( in WOC ), decimals are silently dropped
             hexstr_if_str(
                 to_int
-            ),  # max total delegation ( in WOO ), decimals are silently dropped
+            ),  # max total delegation ( in WOC ), decimals are silently dropped
             hexstr_if_str( to_bytes ),  # key to remove
             hexstr_if_str( to_bytes ),  # key to add
             hexstr_if_str( to_bytes ),  # key to add sig
         ],
         [
-            convert_woo_to_hex( sanitized_transaction.pop( "validatorAddress" ) ),
+            convert_woc_to_hex( sanitized_transaction.pop( "validatorAddress" ) ),
             description,
             [ _convert_staking_percentage_to_number( sanitized_transaction.pop( "rate" ) ) ],
             math.floor(

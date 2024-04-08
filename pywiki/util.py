@@ -1,6 +1,6 @@
 """
 Basic pywiki utils like is_shard_active
-WOO address format conversion
+WOC address format conversion
 Chain id (str) to int conversion
 """
 import json
@@ -88,8 +88,8 @@ def get_goversion():
     return subprocess.check_output( [ "go", "version" ] ).decode().strip()
 
 
-def convert_woo_to_hex( addr ):
-    """Given a woo address, convert it to hex checksum address."""
+def convert_woc_to_hex( addr ):
+    """Given a woc address, convert it to hex checksum address."""
     if not is_valid_address( addr ):
         return to_checksum_address( addr )
     _, data = bech32_decode( addr )
@@ -98,8 +98,8 @@ def convert_woo_to_hex( addr ):
     return str( to_checksum_address( address ) )
 
 
-def convert_hex_to_woo( addr ):
-    """Given a hex address, convert it to a woo address."""
+def convert_hex_to_woc( addr ):
+    """Given a hex address, convert it to a woc address."""
     if is_valid_address( addr ):
         return addr
     checksum_addr = str( to_checksum_address( addr ) )
@@ -108,7 +108,7 @@ def convert_hex_to_woo( addr ):
         .startswith( "0x" ) else checksum_addr
     )
     buf = convertbits( data, 8, 5 )
-    return str( bech32_encode( "woo", buf ) )
+    return str( bech32_encode( "woc", buf ) )
 
 
 def is_active_shard( endpoint, delay_tolerance = 60 ):

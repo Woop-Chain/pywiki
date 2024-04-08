@@ -39,12 +39,12 @@ class Validator:  # pylint: disable=too-many-instance-attributes, too-many-publi
         if not isinstance( address, str ):
             raise InvalidValidatorError(
                 1,
-                "given WOO address was not a string"
+                "given WOC address was not a string"
             )
         if not is_valid_address( address ):
             raise InvalidValidatorError(
                 1,
-                f"{address} is not valid WOO address"
+                f"{address} is not valid WOC address"
             )
         self._address = address
         self._bls_keys = []

@@ -16,20 +16,20 @@ from .constants import DEFAULT_ENDPOINT, DEFAULT_TIMEOUT
 
 def is_valid_address( address ) -> bool:
     """
-    Check if given string is valid woo address
+    Check if given string is valid woc address
     NOTE: This function is NOT thread safe due to the C function used by the bech32 library.
 
     Parameters
     ----------
     address: str
-        String to check if valid woo address
+        String to check if valid woc address
 
     Returns
     -------
     bool
         Is valid address
     """
-    if not address.startswith( "woo1" ):
+    if not address.startswith( "woc1" ):
         return False
     hrp, _ = bech32_decode( address )
     if not hrp:

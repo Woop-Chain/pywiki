@@ -56,7 +56,7 @@ make release
 ```py
 test_net = 'https://trpc.woopchain.com'				# this is shard 0
 test_net_shard_1 = 'https://trpc1.woopchain.com'
-test_address = 'woo18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7'
+test_address = 'woc18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7'
 
 main_net = 'https://rpc.woopchain.com'
 main_net_shard_1 = 'https://rpc1.woopchain.com'
@@ -65,14 +65,14 @@ main_net_shard_1 = 'https://rpc1.woopchain.com'
 ##### Address conversion
 ```py
 from pywiki import util
-hex_addr = util.convert_woo_to_hex('woo155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3')
-woo_addr = util.convert_hex_to_woo('0xA5241513DA9F4463F1d4874b548dFBAC29D91f34')
+hex_addr = util.convert_woc_to_hex('woc155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3')
+woc_addr = util.convert_hex_to_woc('0xA5241513DA9F4463F1d4874b548dFBAC29D91f34')
 ```
 ##### Ether / Wei conversion
 ```py
 from pywiki import numbers
-woo_ether_in_wei = numbers.convert_woo_to_atto(1) # as a decimal.Decimal
-wei_to_ether = numbers.convert_atto_to_woo(int(1e18))
+woc_ether_in_wei = numbers.convert_woc_to_atto(1) # as a decimal.Decimal
+wei_to_ether = numbers.convert_atto_to_woc(int(1e18))
 ```
 #### accounts
 ```py
@@ -214,11 +214,11 @@ signers_keys = blockchain.get_block_signers_keys(block_num=9017724, endpoint=tes
 ```
 Check if an address is a signer for a block
 ```py
-is_block_signer = blockchain.is_block_signer(block_num=9017724, address='woo1yc06ghr2p8xnl2380kpfayweguuhxdtupkhqzw', endpoint=test_net)
+is_block_signer = blockchain.is_block_signer(block_num=9017724, address='woc1yc06ghr2p8xnl2380kpfayweguuhxdtupkhqzw', endpoint=test_net)
 ```
 Fetch the number of blocks signed by a particular validator for the last epoch
 ```py
-number_signed_blocks = blockchain.get_signed_blocks(address='woo1yc06ghr2p8xnl2380kpfayweguuhxdtupkhqzw', endpoint=test_net)
+number_signed_blocks = blockchain.get_signed_blocks(address='woc1yc06ghr2p8xnl2380kpfayweguuhxdtupkhqzw', endpoint=test_net)
 ```
 Fetch a list of validators and their public keys for specific epoch number
 ```py
@@ -251,8 +251,8 @@ stx_count = blockchain.get_block_staking_transaction_count_by_hash(block_hash=bl
 #### Staking
 ```py
 from pywiki import staking
-validator_addr = 'woo1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd'
-delegator_addr = 'woo1y2624lg0mpkxkcttaj0c85pp8pfmh2tt5zhdte'
+validator_addr = 'woc1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd'
+delegator_addr = 'woc1y2624lg0mpkxkcttaj0c85pp8pfmh2tt5zhdte'
 ```
 ##### Validation
 ```py
@@ -295,16 +295,16 @@ validator.load_from_blockchain(test_net)
 ```
 Create a new validator object and load from dictionary
 ```py
-from pywiki.numbers import convert_woo_to_atto
-validator = Validator('woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9')
+from pywiki.numbers import convert_woc_to_atto
+validator = Validator('woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9')
 info = {
         'name': 'Alice',
         'identity': 'alice',
-        'website': 'alice.wikiwoop.com',
+        'website': 'alice.wikiwocp.com',
         'details': "Don't mess with me!!!",
         'security-contact': 'Bob',
-        'min-self-delegation': convert_woo_to_atto(10000),
-        'amount': convert_woo_to_atto(10001),
+        'min-self-delegation': convert_woc_to_atto(10000),
+        'amount': convert_woc_to_atto(10001),
         'max-rate': '0.9',
         'max-change-rate': '0.05',
         'rate': '0.01',
@@ -312,7 +312,7 @@ info = {
         "bls-key-sigs": [
             "0xef2c49a2f31fbbd23c21bc176eaf05cd0bebe6832033075d81fea7cff6f9bc1ab42f3b6895c5493fe645d8379d2eaa1413de55a9d3ce412a4f747cb57d52cc4da4754bfb2583ec9a41fe5dd48287f964f276336699959a5fcef3391dc24df00d",
         ]
-        'max-total-delegation': convert_woo_to_atto(40000)
+        'max-total-delegation': convert_woc_to_atto(40000)
     }
 validator.load(info)
 ```
@@ -381,12 +381,12 @@ Sign it with your private key and use `send_raw_transaction`
 from pywiki import signing
 tx = {
 'chainId': 2,
-'from': 'woo18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
+'from': 'woc18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
 'gas': 6721900,
 'gasPrice': 1000000000,
 'nonce': 6055,
 'shardID': 0,
-'to': 'woo1ngt7wj57ruz7kg4ejp7nw8z7z6640288ryckh9',
+'to': 'woc1ngt7wj57ruz7kg4ejp7nw8z7z6640288ryckh9',
 'toShardID': 0,
 'value': 500000000000000000000
 }
@@ -397,7 +397,7 @@ A similar approach can be followed for staking transactions
 from pywiki import staking_structures, staking_signinge
 tx = {
   'chainId': 2,
- 'delegatorAddress': 'woo18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
+ 'delegatorAddress': 'woc18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
  'directive': staking_structures.Directive.CollectRewards,
  'gasLimit': 6721900,
  'gasPrice': 1,
@@ -408,44 +408,44 @@ transaction.send_raw_staking_transaction(staking_signing.sign_staking_transactio
 ### Contracts
 ```py
 from pywiki import contract
-from pywiki.util import convert_woo_to_hex
-contract_addr = 'woo1rcs4yy4kln53ux60qdeuhhvpygn2sutn500dhw'
+from pywiki.util import convert_woc_to_hex
+contract_addr = 'woc1rcs4yy4kln53ux60qdeuhhvpygn2sutn500dhw'
 ```
 Call a contract without saving state
 ```py
 from pywiki import numbers
-result = contract.call(convert_woo_to_hex(contract_addr), 'latest', value=hex(int(numbers.convert_woo_to_atto(5)))
+result = contract.call(convert_woc_to_hex(contract_addr), 'latest', value=hex(int(numbers.convert_woc_to_atto(5)))
 , gas_price=hex(1), gas=hex(100000), endpoint=test_net)
 ```
 Estimate gas required for a smart contract call
 ```py
-estimated_gas = contract.estimate_gas(convert_woo_to_hex(contract_addr), endpoint=test_net)
+estimated_gas = contract.estimate_gas(convert_woc_to_hex(contract_addr), endpoint=test_net)
 ```
 Fetch the byte code of the contract
 ```py
-byte_code = contract.get_code(convert_woo_to_hex(contract_addr), 'latest', endpoint=test_net)
+byte_code = contract.get_code(convert_woc_to_hex(contract_addr), 'latest', endpoint=test_net)
 ```
 Get storage in the contract at `key`
 ```py
-storage = contract.get_storage_at(convert_woo_to_hex(contract_addr), key='0x0', block_num='latest', endpoint=test_net)
+storage = contract.get_storage_at(convert_woc_to_hex(contract_addr), key='0x0', block_num='latest', endpoint=test_net)
 ```
 Calling a function on a contract needs the contract ABI. The ABI can be obtained by compiling the contract.
 ```py
 from web3 import Web3
 from web3 import providers
-from pywiki.util import convert_woo_to_hex
+from pywiki.util import convert_woc_to_hex
 contract_abi = '[{"constant":true,"inputs":[],"name":"manager","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"pickWinner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPlayers","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"enter","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"players","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]'
 w3 = Web3(providers.HTTPProvider(test_net))
-lottery = w3.eth.contract(abi=contract_abi, address=convert_woo_to_hex('woo1rcs4yy4kln53ux60qdeuhhvpygn2sutn500dhw'))
+lottery = w3.eth.contract(abi=contract_abi, address=convert_woc_to_hex('woc1rcs4yy4kln53ux60qdeuhhvpygn2sutn500dhw'))
 lottery.functions.getPlayers().call()
 ```
 To actually participate in a contract, you can sign a transaction from your account to it.
 ```py
 from pywiki import signing
-contract_addr = 'woo1rcs4yy4kln53ux60qdeuhhvpygn2sutn500dhw'
+contract_addr = 'woc1rcs4yy4kln53ux60qdeuhhvpygn2sutn500dhw'
 tx = {
  'chainId': 2,
- 'from': 'woo18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
+ 'from': 'woc18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
  'gas': 6721900,
  'gasPrice': 1000000000,
  'nonce': 6054,
@@ -463,7 +463,7 @@ from pywiki import transaction
 contract_tx = {
  'chainId': 2,	# test net data
  'data': '0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063445df0ac146100465780638da5cb5b14610064578063fdacd576146100ae575b600080fd5b61004e6100dc565b6040518082815260200191505060405180910390f35b61006c6100e2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100da600480360360208110156100c457600080fd5b8101908080359060200190929190505050610107565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561016457806001819055505b5056fea265627a7a723158209b80813a158b44af65aee232b44c0ac06472c48f4abbe298852a39f0ff34a9f264736f6c63430005100032', 	# Migrations.sol
- 'from': 'woo18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
+ 'from': 'woc18t4yj4fuutj83uwqckkvxp9gfa0568uc48ggj7',
  'gas': 6721900,
  'gasPrice': 1000000000,
  'nonce': 6049,
@@ -532,7 +532,7 @@ To sign a transaction to collect rewards, supply the dictionary containing the `
 ```py
 transaction_dict = {
     'directive': staking_structures.Directive.CollectRewards,
-    'delegatorAddress': 'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+    'delegatorAddress': 'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
     'nonce': 2,
     'gasPrice': 1,
     'gasLimit': 100,
@@ -543,8 +543,8 @@ To sign a transaction to delegate or undelegate, supply the dictionary containin
 ```py
 transaction_dict = {
         'directive': staking_structures.Directive.Delegate,
-        'delegatorAddress': 'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
-        'validatorAddress': 'woo1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd',
+        'delegatorAddress': 'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+        'validatorAddress': 'woc1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd',
         'amount': 5,
         'nonce': 2,
         'gasPrice': 1,
@@ -553,8 +553,8 @@ transaction_dict = {
 signed_tx = staking_signing.sign_staking_transaction(transaction_dict, '4edef2c24995d15b0e25cbd152fb0e2c05d3b79b9c2afd134e6f59f91bf99e48')
 transaction_dict = {
         'directive': staking_structures.Directive.Undelegate,
-        'delegatorAddress': 'woo1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
-        'validatorAddress': 'woo1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd',
+        'delegatorAddress': 'woc1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9',
+        'validatorAddress': 'woc1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd',
         'amount': 5,
         'nonce': 2,
         'gasPrice': 1,

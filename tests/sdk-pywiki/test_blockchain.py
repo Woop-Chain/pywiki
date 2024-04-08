@@ -10,7 +10,7 @@ genesis_block_number = 0
 test_block_number = 1
 test_block_hash = None
 fake_shard = "http://example.com"
-address = "woo155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
+address = "woc155jp2y76nazx8uw5sa94fr0m4s5aj8e5xm6fu3"
 
 
 def _test_blockchain_rpc( fn, *args, **kwargs ):
@@ -44,7 +44,7 @@ def test_get_sharding_structure( setup_blockchain ):
 def test_get_leader_address( setup_blockchain ):
     leader = _test_blockchain_rpc( blockchain.get_leader_address )
     assert isinstance( leader, str )
-    assert "woo1" in leader
+    assert "woc1" in leader
 
 
 def test_get_block_number( setup_blockchain ):
